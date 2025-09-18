@@ -25,6 +25,42 @@ streamlit run app.py
 После запуска интерфейс будет доступен по адресу
 <http://localhost:8501/>.
 
+## Настольная версия для Windows
+
+В репозитории есть файл `desktop_app.py`, который запускает локальное
+настольное приложение с тем же функционалом.
+
+### Быстрый запуск без упаковки
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+python desktop_app.py
+```
+
+Откроется окно, в котором можно выбрать Excel-файл, настроить соответствие
+колонок, выполнить расчёт и сохранить результаты в новый Excel.
+
+### Сборка exe-файла через PyInstaller
+
+1. Установите зависимости, если это ещё не сделано:
+   ```powershell
+   python -m venv .venv
+   .\.venv\Scripts\activate
+   pip install -r requirements.txt
+   pip install pyinstaller
+   ```
+2. Запустите сборку:
+   ```powershell
+   pyinstaller --name pallet-optimizer --noconsole --onefile desktop_app.py
+   ```
+3. Готовый `pallet-optimizer.exe` появится в папке `dist`. Его можно
+   копировать на другой компьютер и запускать без установки Python.
+
+При первом запуске Windows может показать предупреждение SmartScreen.
+Нажмите «Подробнее» → «Выполнить в любом случае», если доверяете файлу.
+
 ## Формат входных данных
 
 * Каждая строка Excel-файла описывает товар.
